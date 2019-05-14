@@ -1,3 +1,9 @@
+print("Warning: This program scrapes the entirety of the ScryFall database, one page at a time. This process will take approximately 40 minutes.")
+print("Would you like to continue?")
+verify = input("y/n:")
+if verify != "y":
+    quit()
+
 import requests
 import time
 
