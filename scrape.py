@@ -1,8 +1,10 @@
-print("Warning: This program scrapes the entirety of the ScryFall database, one page at a time. This process will take approximately 40 minutes.")
+print("Warning: This program scrapes the entirety of the ScryFall database via its api, one page at a time.
+print("There are approximately 1420 pages total. This process will take approximately 40 minutes.")
 print("Would you like to continue?")
 verify = input("y/n:")
 if verify != "y":
     quit()
+print("Initializing...")
 
 import requests
 import time
@@ -21,6 +23,7 @@ f = open("data.txt", "a")
 
 e = open("errors.txt", "a")
 
+print("Initialized.")
 while(True):
     URL = "https://api.scryfall.com/cards/?page=" + str(p)
 
@@ -47,5 +50,6 @@ while(True):
     
     time.sleep(1)
     
-    print(p)
+    if p%10 == 0:
+        print(p + " pages read")
     p += 1
