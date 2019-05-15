@@ -1,4 +1,8 @@
 import random
+import requests
+import string
+
+MAX_TWEET_LENGTH = 280
 
 #initialize outside functions
 words = []
@@ -12,7 +16,7 @@ lines = raw.split("\n")
 for line in lines:
     line = line + " EOL"
     words.append(line.split(" "))
-    
+        
 for line in words:
     for i, key1 in enumerate(line):
         if key1 == "EOL":
