@@ -6,6 +6,7 @@ import base64
 import urllib
 import random
 import string
+import markov
 
 def makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL):
 
@@ -50,6 +51,7 @@ def makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, t
 
 def makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL):
     signature = makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL)
+    #signature = "tnnArxj06cWHq44gCs1OSKk/jLY="
     auth_dict = {"oauth_consumer_key":consumer_key, "oauth_nonce":nonce, "oauth_signature":signature,
     "oauth_signature_method":"HMAC-SHA1", "oauth_timestamp":timestamp, "oauth_token":oauth_token, 
     "oauth_version":"1.0"}
@@ -66,8 +68,7 @@ def makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, 
 def postToTwitter():
 
     f = open("key.txt", "r")
-    raw = f.read()
-    key = raw.split("\n")
+    key = f.read().split("\n")
 
     consumer_key = key[0]
     oauth_token = key[2]
@@ -75,12 +76,13 @@ def postToTwitter():
     token_secret = key[3]
     timestamp = str(int(time.time()))
     nonce = "".join(random.choice(string.ascii_lowercase) for i in range(20))
-    URL = "https://api.twitter.com/1.1/statuses/update.json?include_entities=true"
-    message = "Testing API"
+    URL = "https://api.twitter.com/1.1/statuses/update.json"
+    message = markov.markov()
 
     print(message)
-
     auth = makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL)
+
+    URL = URL + "?include_entities=true"
 
     headers = {"Authorization":auth}
     data = {"status":message}
@@ -92,7 +94,9 @@ def postToTwitter():
 
 def main():
     #these are the test cases provided by twitter, not real tokens. Real tokens are stored in a gitignore'd file.
-    """consumer_key = "xvz1evFS4wEEPTGEFPHBog"
+    """f = open("solution.txt")
+    solutions = f.read().split("\n")
+    consumer_key = "xvz1evFS4wEEPTGEFPHBog"
     oauth_token = "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb"
     consumer_secret = "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw"
     token_secret = "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE"
@@ -100,18 +104,15 @@ def main():
     nonce = "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"
     URL = "https://api.twitter.com/1.1/statuses/update.json"
     message = "Hello Ladies + Gentlemen, a signed OAuth request!"
+    sig = makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL)
+    print(sig)
+    print(sig == solutions[3])
+
+    gen = makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL)
+    print(gen)
+    print(gen == solutions[4])
     """
-    """consumer_key = "xvz1evFS4wEEPTGEFPHBog"
-    nonce = "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"
-    timestamp = "1318622958"
-    oauth_token = "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb"
-    gen = makeAuth(consumer_key, oauth_token, "asdfghjkl", "asdfghjkl", "message", timestamp, nonce, "https://api.twitter.com/1.1/statuses/update.json")
-    f = open("solution.txt")
-    solution = f.read().split("\n")[4]
-    print(solution)
-    print(gen == solution)"""
-    postToTwitter()
 
 
 if __name__ =="__main__":
-    main()
+    postToTwitter()

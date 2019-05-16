@@ -1,4 +1,4 @@
-print("Warning: This program scrapes the entirety of the ScryFall database via its api, one page at a time.
+print("Warning: This program scrapes the entirety of the ScryFall database via its api, one page at a time.")
 print("There are approximately 1420 pages total. This process will take approximately 40 minutes.")
 print("Would you like to continue?")
 verify = input("y/n:")

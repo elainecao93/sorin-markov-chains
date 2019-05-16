@@ -47,7 +47,8 @@ def markov():
     return output
 
 def main():
-    print(markov())
+    for _ in range(40):
+        print(markov())
 
 if __name__ =="__main__":
     main()
