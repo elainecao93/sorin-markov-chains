@@ -1,5 +1,5 @@
 print("Warning: This program scrapes the entirety of the ScryFall database via its api, one page at a time.")
-print("There are approximately 1420 pages total. This process will take approximately 40 minutes.")
+print("There are approximately 1420 pages total. This process will take several minutes.")
 print("Would you like to continue?")
 verify = input("y/n:")
 if verify != "y":
@@ -35,10 +35,12 @@ while(True):
 
     for card in cards:
         if card["lang"] == "en" and"flavor_text" in card:
-            ftext = card["flavor_text"].replace("\n", " ")
+            line = card["flavor_text"]
+            line = line + " EOL " + card["name"] + " " +  card["set_name"]
+            line = line.replace("\n", " ")
+            line = line + "\n"
             try:
-                f.write(ftext)
-                f.write("\n")
+                f.write(line)
             except:
                 uri = card["uri"]
                 print(uri)
@@ -48,8 +50,8 @@ while(True):
     if not data["has_more"]:
         break;
     
-    time.sleep(1)
+    time.sleep(.1)
     
     if p%10 == 0:
-        print(p + " pages read")
+        print(str(p) + " pages read")
     p += 1
