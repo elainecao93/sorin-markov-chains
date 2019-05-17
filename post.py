@@ -10,10 +10,6 @@ import markov
 
 def makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL):
 
-    f = open("solution.txt", "r")
-    raw = f.read()
-    solution = raw.split("\n")
-
     auth_key = {"include_entities":"true", "oauth_consumer_key":consumer_key, "oauth_nonce":nonce, 
     "oauth_signature_method":"HMAC-SHA1", "oauth_timestamp":timestamp, "oauth_token":oauth_token, 
     "oauth_version":"1.0", "status":message}
@@ -69,10 +65,12 @@ def postToTwitter():
     timestamp = str(int(time.time()))
     nonce = "".join(random.choice(string.ascii_lowercase) for i in range(20))
     URL = "https://api.twitter.com/1.1/statuses/update.json"
-    message = markov.markov()
+    message = markov.Chain()
+    messagestr = str(message)
 
-    print(message)
-    auth = makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL)
+    print(messagestr)
+
+    auth = makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, messagestr, timestamp, nonce, URL)
 
     URL = URL + "?include_entities=true"
 
@@ -82,6 +80,11 @@ def postToTwitter():
     r = requests.post(url = URL, data = data, headers = headers)
     print(r.request.headers)
     print(r.text)
+    retval = r.json()
+
+    log = open("output.log", "a")
+    log.write(retval["created_at"] + " " + nonce + "\n")
+    log.write(message.trace() + "\n")
 
 if __name__ =="__main__":
     postToTwitter()

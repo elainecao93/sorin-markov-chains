@@ -45,7 +45,7 @@ class Chain():
 
     def __repr__(self):
         if len(self.solution) == 0:
-            return ""
+            self.make()
         output = ""
         first = True
         for elem in self.solution:
@@ -128,7 +128,6 @@ class Chain():
         return(output)
 
 class Link():
-
     def __init__(self, word, source, lineindex):
         self.word = word
         self.source = source
@@ -142,7 +141,7 @@ def markov():
 def main():
     chain = Chain()
     chain.make()
-    chain.fulltrace()
+    chain.trace()
     print(chain)
 
 if __name__ =="__main__":
