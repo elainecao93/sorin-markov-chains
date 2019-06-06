@@ -107,7 +107,6 @@ class Chain():
         for elem in self.solution:
             pad = " "*(20 - len(elem.word))
             output += elem.word + pad + elem.source + "\n"
-        print(output)
         return output
     
     def fulltrace(self):
@@ -139,10 +138,13 @@ def markov():
     return chain
 
 def main():
-    chain = Chain()
-    chain.make()
-    chain.trace()
-    print(chain)
+    for x in range(10):
+        while (True):
+            chain = markov()
+            if chain.trace().count("Modern Horizons") > 0:
+                print(chain)
+                print(chain.trace())
+                break;
 
 if __name__ =="__main__":
     main()

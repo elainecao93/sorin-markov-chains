@@ -48,7 +48,7 @@ while(True):
                 e.write("\n")
     
     if not data["has_more"]:
-        break;
+        break
     
     time.sleep(.1)
     

@@ -65,8 +65,12 @@ def postToTwitter():
     timestamp = str(int(time.time()))
     nonce = "".join(random.choice(string.ascii_lowercase) for i in range(20))
     URL = "https://api.twitter.com/1.1/statuses/update.json"
+    
     message = markov.Chain()
     messagestr = str(message)
+    while len(messagestr) > 280:
+        message = markov.Chain()
+        messagestr = str(message) 
 
     print(messagestr)
 
@@ -80,6 +84,7 @@ def postToTwitter():
     r = requests.post(url = URL, data = data, headers = headers)
     print(r.request.headers)
     print(r.text)
+    print(message.trace())
     retval = r.json()
 
     log = open("output.log", "a")
