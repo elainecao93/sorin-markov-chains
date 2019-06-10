@@ -7,31 +7,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 db = SQLAlchemy(app)
 
-class Link(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    word1 = db.Column(db.String(50))
-    word2 = db.Column(db.String(50))
-    nextWord = db.Column(db.String(50))
-    source_id = db.Column(db.Integer, db.ForeignKey("CardSource.id"))
-
-    def __init__(self, word1, word2, nextWord, card, cardSet):
-        self.word1 = word1
-        self.word2 = word2
-        self.nextWord = nextWord
-        id = CardSource.getId(card, cardSet)
-        if id == 0:
-            newSource = CardSource(card, cardSet)
-            db.session.add(newSource)
-            id = newSource.id
-        self.source_id = id
-    
-    def __repr__(self):
-        output = ""
-        output += self.word1 + " "
-        output += self.word2 + " "
-        output += self.nextWord + " "
-        return output
-
 class Log(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nonce = db.Column(db.String(20))
@@ -56,6 +31,31 @@ class CardSource(db.Model):
         if not source:
             return 0
         return source.id
+
+class Link(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    word1 = db.Column(db.String(50))
+    word2 = db.Column(db.String(50))
+    nextWord = db.Column(db.String(50))
+    source_id = db.Column(db.Integer, db.ForeignKey("CardSource.id"))
+
+    def __init__(self, word1, word2, nextWord, card, cardSet):
+        self.word1 = word1
+        self.word2 = word2
+        self.nextWord = nextWord
+        id = CardSource.getId(card, cardSet)
+        if id == 0:
+            newSource = CardSource(card, cardSet)
+            db.session.add(newSource)
+            id = newSource.id
+        self.source_id = id
+    
+    def __repr__(self):
+        output = ""
+        output += self.word1 + " "
+        output += self.word2 + " "
+        output += self.nextWord + " "
+        return output
 
 def main():
     db.drop_all()
