@@ -22,7 +22,7 @@ class Link(db.Model):
             newSource = CardSource(card, cardSet)
             db.session.add(newSource)
             id = newSource.id
-        self.source_id = 
+        self.source_id = id
     
     def __repr__(self):
         output = ""
