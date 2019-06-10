@@ -18,7 +18,7 @@ class CardSource(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     card = db.Column(db.String(100))
     cardSet = db.Column(db.String(100))
-    links = db.relationship("Link", backref = "links")
+    links = db.relationship("Link", backref="source")
 
     def __init__(self, card, cardSet):
         self.card = card
@@ -37,7 +37,7 @@ class Link(db.Model):
     word1 = db.Column(db.String(50))
     word2 = db.Column(db.String(50))
     nextWord = db.Column(db.String(50))
-    source_id = db.Column(db.Integer, db.ForeignKey("CardSource.id"))
+    source_id = db.Column(db.Integer, db.ForeignKey("cardsource.id"))
 
     def __init__(self, word1, word2, nextWord, card, cardSet):
         self.word1 = word1
