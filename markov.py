@@ -127,6 +127,7 @@ class Chain():
         return(output)
 
 class Link():
+
     def __init__(self, word, source, lineindex):
         self.word = word
         self.source = source
@@ -138,13 +139,7 @@ def markov():
     return chain
 
 def main():
-    for x in range(10):
-        while (True):
-            chain = markov()
-            if chain.trace().count("Modern Horizons") > 0:
-                print(chain)
-                print(chain.trace())
-                break;
+    print(markov())
 
 if __name__ =="__main__":
     main()
