@@ -101,7 +101,7 @@ def main():
                 db.session.commit()
         pageNumber += 1
         if pageNumber%10 == 0:
-            print(str(p) + " pages read")
+            print(str(pageNumber) + " pages read")
         if not data["has_more"]:
             break
         
