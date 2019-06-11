@@ -40,6 +40,12 @@ class Link(db.Model):
     #source_id = db.Column(db.Integer, db.ForeignKey("CardSource.id"))
     source_id = db.Column(db.Integer)
 
+    def __init__(self, word1, word2, nextWord, cardId):
+        self.word1 = word1
+        self.word2 = word2
+        self.nextWord = nextWord
+        self.source_id = id
+
     def __init__(self, word1, word2, nextWord, card, cardSet):
         self.word1 = word1
         self.word2 = word2
@@ -61,10 +67,11 @@ class Link(db.Model):
 def main():
     #Testcases
     db.drop_all()
+    db.session.commit()
     db.create_all()
     db.session.commit()
 
-    newLink = Link("a", "b", "c", "1", "2")
+    newLink = Link("a", "b", "c", 1)
     db.session.add(newLink)
     db.session.commit()
 
