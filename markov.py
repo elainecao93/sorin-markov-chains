@@ -4,6 +4,8 @@ import string
 
 MAX_TWEET_LENGTH = 280
 
+#TODO refactor this to use postgres database
+
 class Chain():
     lines = []
     words = []
@@ -11,7 +13,7 @@ class Chain():
     isSetup = False
 
     @staticmethod
-    def setup(): #TODO set up the chains
+    def setup():
         f = open("data.txt", "r")
         Chain.lines = f.read().split("\n")
         for line in Chain.lines:
@@ -38,6 +40,7 @@ class Chain():
                     Chain.links[(key1, key2)] = [link]
     
     def __init__(self):
+        #Sets up the chain, but does not make it. Use make()
         if not Chain.isSetup:
             Chain.setup()
             Chain.isSetup = True
@@ -45,7 +48,7 @@ class Chain():
 
     def __repr__(self):
         if len(self.solution) == 0:
-            self.make()
+            self.make() #This shouldn't happen but just in case
         output = ""
         first = True
         for elem in self.solution:
@@ -101,6 +104,7 @@ class Chain():
         return None
     
     def trace(self):
+        #Trace for log. Don't post this.
         if len(self.solution) == 0:
             self.make()
         output = ""
@@ -110,6 +114,7 @@ class Chain():
         return output
     
     def fulltrace(self):
+        #Mostly unused.
         if len(self.solution) == 0:
             self.make()
         output = ""

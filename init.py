@@ -59,6 +59,7 @@ class Link(db.Model):
         return output
 
 def main():
+    #Testcases
     db.drop_all()
     db.create_all()
     db.session.commit()
@@ -67,6 +68,7 @@ def main():
     db.session.add(newLink)
     db.session.commit()
 
+    #TODO refactor scrape.py into this
     
 
 if __name__ == "__main__":

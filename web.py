@@ -11,9 +11,13 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
+
+    #Testcase
     elem = Link.query.first()
     output = "" + elem + " " + type(elem)
     return output
+
+#TODO refactor post.py into this
 
 if __name__ == "__main__":
     app.run()
