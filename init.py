@@ -68,8 +68,8 @@ def main():
 
     #TODO refactor scrape.py and markov.py  into this
 
+    pageNumber = 1
     while(True):
-        pageNumber = 1
         URL = "https://api.scryfall.com/cards/?page=" + str(pageNumber)
 
         r = requests.get(url = URL)
