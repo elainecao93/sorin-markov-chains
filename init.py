@@ -99,6 +99,9 @@ def main():
                     db.session.add(link)
                 
                 db.session.commit()
+        pageNumber += 1
+        if p%10 == 0:
+            print(str(p) + " pages read")
         if not data["has_more"]:
             break
         
