@@ -68,6 +68,11 @@ def main():
 
     #TODO refactor scrape.py and markov.py  into this
 
+    db.drop_all()
+    db.session.commit()
+    db.create_all()
+    db.session.commit()
+
     pageNumber = 1
     while(True):
         URL = "https://api.scryfall.com/cards/?page=" + str(pageNumber)
