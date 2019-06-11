@@ -91,9 +91,9 @@ def main():
                 words = flavorText.split(" ")
                 eol = words.index("EOL")
                 for i in range(0, eol-1):
-                    key1 = line[i]
-                    key2 = line[i+1]
-                    word = line[i+2]
+                    key1 = words[i]
+                    key2 = words[i+1]
+                    word = words[i+2]
                     link = Link(key1, key2, word, newCard.id)
                     print(key1 + " " + key2 + " " + word)
                     db.session.add(link)
