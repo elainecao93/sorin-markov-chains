@@ -64,7 +64,7 @@ def main():
     db.session.commit()
 
     newLink = Link("a", "b", "c", "1", "2")
-    db.session.add(new_user)
+    db.session.add(newLink)
     db.session.commit()
 
     
