@@ -12,8 +12,8 @@ db = SQLAlchemy(app)
 @app.route("/")
 def index():
     elem = Link.query.first()
-    print(elem)
-    print(type(elem))
+    output = "" + elem + " " + type(elem)
+    return output
 
 if __name__ == "__main__":
     app.run()
