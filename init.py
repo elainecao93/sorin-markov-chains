@@ -44,7 +44,7 @@ class Link(db.Model):
         self.word1 = word1
         self.word2 = word2
         self.nextWord = nextWord
-        self.source_id = id
+        self.source_id = cardId
     
     def __repr__(self):
         output = ""
