@@ -82,7 +82,7 @@ def main():
                 cardName = card["name"]
                 cardSet = card["set_name"]
 
-                print(flavorText + " " + cardName + " " + cardSet)
+                #print(flavorText + " " + cardName + " " + cardSet)
 
                 newCard = CardSource(cardName, cardSet)
                 db.session.add(newCard)
@@ -95,7 +95,7 @@ def main():
                     key2 = words[i+1]
                     word = words[i+2]
                     link = Link(key1, key2, word, newCard.id)
-                    print(key1 + " " + key2 + " " + word)
+                    #print(key1 + " " + key2 + " " + word)
                     db.session.add(link)
                 
                 db.session.commit()
