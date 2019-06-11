@@ -1,5 +1,5 @@
-data.txt
-errors.txt
-key.txt
-output.log
+local/data.txt
+local/errors.txt
+local/key.txt
+local/output.log
 __pycache__

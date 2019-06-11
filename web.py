@@ -17,6 +17,10 @@ def index():
     output = "" + str(elem) + " " + str(type(elem))
     return output
 
+@app.route("/i/love/bronson")
+def postToTwitter():
+    
+
 #TODO refactor post.py into this
 
 if __name__ == "__main__":
