@@ -14,7 +14,7 @@ def index():
 
     #Testcase
     elem = Link.query.first()
-    output = "" + elem + " " + type(elem)
+    output = "" + str(elem) + " " + str(type(elem))
     return output
 
 #TODO refactor post.py into this
