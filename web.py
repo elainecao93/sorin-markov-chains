@@ -1,5 +1,6 @@
 from flask import Flask
 from init import Link, Log, CardSource
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
