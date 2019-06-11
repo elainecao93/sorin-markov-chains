@@ -45,17 +45,6 @@ class Link(db.Model):
         self.word2 = word2
         self.nextWord = nextWord
         self.source_id = id
-
-    def __init__(self, word1, word2, nextWord, card, cardSet):
-        self.word1 = word1
-        self.word2 = word2
-        self.nextWord = nextWord
-        id = CardSource.getId(card, cardSet)
-        if id == 0:
-            newSource = CardSource(card, cardSet)
-            db.session.add(newSource)
-            id = newSource.id
-        self.source_id = id
     
     def __repr__(self):
         output = ""
