@@ -14,7 +14,7 @@ class Log(db.Model):
     links = db.Column(db.String(200))
     
 
-class CardSource(db.Model):
+class Cardsource(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     card = db.Column(db.String(100))
     cardSet = db.Column(db.String(100))
@@ -37,7 +37,7 @@ class Link(db.Model):
     word1 = db.Column(db.String(50))
     word2 = db.Column(db.String(50))
     nextWord = db.Column(db.String(50))
-    source_id = db.Column(db.Integer, db.ForeignKey("cardsource.id"))
+    source_id = db.Column(db.Integer, db.ForeignKey("Cardsource.id"))
 
     def __init__(self, word1, word2, nextWord, card, cardSet):
         self.word1 = word1
