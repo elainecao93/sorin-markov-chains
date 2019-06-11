@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import requests
+import time
 
 import os
 
@@ -54,7 +56,7 @@ class Link(db.Model):
         return output
 
 def main():
-    #Testcases
+    """#Testcases
     db.drop_all()
     db.session.commit()
     db.create_all()
@@ -62,9 +64,45 @@ def main():
 
     newLink = Link("a", "b", "c", 1)
     db.session.add(newLink)
-    db.session.commit()
+    db.session.commit()"""
 
-    #TODO refactor scrape.py into this
+    #TODO refactor scrape.py and markov.py  into this
+
+    while(True):
+        pageNumber = 1
+        URL = "https://api.scryfall.com/cards/?page=" + str(pageNumber)
+
+        r = requests.get(url = URL)
+        data = r.json()
+        cards = data["data"]
+
+        for card in cards:
+            if card["lang"] == "en" and "flavor_text" in card:
+                flavorText = "SOL " + card["flavor_text"] + " EOL"
+                cardName = card["name"]
+                cardSet = card["set_name"]
+
+                print(flavorText + " " + cardName + " " + cardSet)
+
+                newCard = CardSource(cardName, cardSet)
+                db.session.add(newCard)
+                db.session.commit()
+
+                words = flavorText.split(" ")
+                eol = words.index("EOL")
+                for i in range(0, eol-1):
+                    key1 = line[i]
+                    key2 = line[i+1]
+                    word = line[i+2]
+                    link = Link(key1, key2, word, newCard.id)
+                    print(key1 + " " + key2 + " " + word)
+                    db.session.add(link)
+                
+                db.session.commit()
+        if not data["has_more"]:
+            break
+        
+        time.sleep(1)
     
 
 if __name__ == "__main__":
