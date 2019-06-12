@@ -14,7 +14,6 @@ class Log(db.Model):
     nonce = db.Column(db.String(20))
     created_at = db.Column(db.String(50))
     links = db.Column(db.String(4000))
-    
 
 class CardSource(db.Model):
     id = db.Column(db.Integer, primary_key = True)

@@ -19,7 +19,7 @@ def index():
 
 @app.route("/i/love/bronson")
 def postToTwitter():
-    
+    return ""
 
 #TODO refactor post.py into this
 
