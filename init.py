@@ -18,7 +18,7 @@ class Log(db.Model):
 
 class CardSource(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    card = db.Column(db.String(100))
+    card = db.Column(db.String(200))
     cardSet = db.Column(db.String(100))
 
     def __init__(self, card, cardSet):
