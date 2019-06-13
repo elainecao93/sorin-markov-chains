@@ -13,9 +13,7 @@ db = SQLAlchemy(app)
 def index():
 
     #Testcase
-    elem = Link.query.first()
-    output = "" + str(elem) + " " + str(type(elem))
-    return output
+    return str(markov())
 
 @app.route("/i/love/bronson")
 def postToTwitter():
