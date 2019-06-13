@@ -36,20 +36,20 @@ class Link(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     word1 = db.Column(db.String(50))
     word2 = db.Column(db.String(50))
-    nextWord = db.Column(db.String(50))
+    next_word = db.Column(db.String(50))
     source_id = db.Column(db.Integer)
 
-    def __init__(self, word1, word2, nextWord, cardId):
+    def __init__(self, word1, word2, next_word, cardId):
         self.word1 = word1
         self.word2 = word2
-        self.nextWord = nextWord
+        self.next_word = next_word
         self.source_id = cardId
     
     def __repr__(self):
         output = ""
         output += self.word1 + " "
         output += self.word2 + " "
-        output += self.nextWord + " "
+        output += self.next_word + " "
         return output
 
 def main():

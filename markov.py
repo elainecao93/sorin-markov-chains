@@ -20,7 +20,7 @@ class Chain():
             self.make()
         output = self.solution[0].word2
         for ind in range(0, len(self.solution)-1):
-            output += self.solution[ind].nextWord
+            output += self.solution[ind].next_word
         return output
     
     def make(self):
@@ -30,10 +30,10 @@ class Chain():
         self.solution.append(firstElem)
         while (True):
             lastElem = self.solution[-1]
-            possibleNextElems = Link.query.filter_by(word1=lastElem.word2, word2=lastElem.nextWord).all()
+            possibleNextElems = Link.query.filter_by(word1=lastElem.word2, word2=lastElem.next_word).all()
             nextElem = random.choice(possibleNextElems)
             self.solution.append(nextElem)
-            if nextElem.nextWord = "EOL":
+            if nextElem.next_word = "EOL":
                 break
         return None
     
