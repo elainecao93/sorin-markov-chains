@@ -7,6 +7,7 @@ import urllib
 import random
 import string
 import markov
+import os
 
 def makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL):
 
@@ -55,13 +56,10 @@ def makeAuth(consumer_key, oauth_token, consumer_secret, token_secret, message, 
 
 def postToTwitter(chain):
 
-    f = open("key.txt", "r")
-    key = f.read().split("\n")
-
-    consumer_key = key[0]
-    oauth_token = key[2]
-    consumer_secret = key[1]
-    token_secret = key[3]
+    consumer_key = os.environ.get("CONSUMER_API_KEY")
+    oauth_token = os.environ.get("ACCESS_TOKEN")
+    consumer_secret = os.environ.get("CONSUMER_API_SECRET_KEY")
+    token_secret = os.environ.get("ACCESS_TOKEN_SECRET")
     timestamp = str(int(time.time()))
     nonce = "".join(random.choice(string.ascii_lowercase) for i in range(20))
     URL = "https://api.twitter.com/1.1/statuses/update.json"
