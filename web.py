@@ -2,6 +2,7 @@ from flask import Flask
 from init import Link, Log, CardSource
 from flask_sqlalchemy import SQLAlchemy
 import os
+import markov
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
