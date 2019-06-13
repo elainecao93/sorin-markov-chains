@@ -15,7 +15,7 @@ class Chain():
     def __init__(self):
         self.solution = []
     
-    def __repr__(self)::
+    def __repr__(self):
         if (len(self.solution)) == 0:
             self.make()
         output = self.solution[0].word2
