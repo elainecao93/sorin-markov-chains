@@ -26,7 +26,7 @@ class Chain():
     def make(self):
         self.solution = []
         possibleFirstElems = Link.query.filter_by(word1="SOL").all()
-        firstElem = random.choice()
+        firstElem = random.choice(possibleFirstElems)
         self.solution.append(firstElem)
         while (True):
             lastElem = self.solution[-1]
