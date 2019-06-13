@@ -20,7 +20,7 @@ class Chain():
             self.make()
         output = self.solution[0].word2
         for ind in range(0, len(self.solution)-1):
-            output += self.solution[ind].next_word
+            output += " " + self.solution[ind].next_word
         return output
     
     def make(self):
