@@ -38,13 +38,13 @@ class Chain():
         return None
     
     def makeFromLog(self):
-        #TODO
+        return None #TODO
     
     def makeIntoLog(self):
-        #TODO
+        return None #TODO
         
     def trace(self):
-        #TODO helper function for makeIntoLog
+        return None #TODO
 
 def markov():
     #spits out a chain
