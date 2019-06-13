@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 def index():
 
     #Testcase
-    output = "<p>" + str(markov()) + "</p>"
+    output = "<p>" + str(markov.markov()) + "</p>"
     return output
 
 @app.route("/i/love/bronson")
