@@ -82,11 +82,6 @@ def postToTwitter(chain):
     print(r.request.headers)
     print(r.text)
     print(chain.trace())
-    retval = r.json()
-
-    log = open("output.log", "a")
-    log.write(retval["created_at"] + " " + nonce + "\n")
-    log.write(chain.trace() + "\n")
 
 if __name__ =="__main__":
     chain = markov.markov()
