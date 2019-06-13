@@ -33,7 +33,7 @@ class Chain():
             possibleNextElems = Link.query.filter_by(word1=lastElem.word2, word2=lastElem.next_word).all()
             nextElem = random.choice(possibleNextElems)
             self.solution.append(nextElem)
-            if nextElem.next_word = "EOL":
+            if nextElem.next_word == "EOL":
                 break
         return None
     
