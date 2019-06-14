@@ -15,6 +15,11 @@ class Log(db.Model):
     created_at = db.Column(db.String(50))
     links = db.Column(db.String(4000))
 
+    def __init__(self, nonce, created_at, links):
+        self.nonce = nonce
+        self.created_at = created_at
+        self.links = links
+
 class CardSource(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     card = db.Column(db.String(200))
