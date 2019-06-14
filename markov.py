@@ -39,10 +39,10 @@ class Chain():
                 break
         
         if ensure_length:
-            len = 0
+            length = 0
             for elem in self.solution:
-                len += len(elem.word2) + 1
-            if len > 280:
+                length += len(elem.word2) + 1
+            if length > 280:
                 return self.make()
 
         
