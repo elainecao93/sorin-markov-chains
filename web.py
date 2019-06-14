@@ -3,6 +3,7 @@ from init import Link, Log, CardSource
 from flask_sqlalchemy import SQLAlchemy
 import os
 import markov
+import post
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
@@ -18,7 +19,8 @@ def index():
     return output
 
 @app.route("/i/love/bronson")
-def postToTwitter():
+def postToTwitter():    
+    post.main()
     return ""
 
 #TODO refactor post.py into this

@@ -1,3 +1,5 @@
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 import requests
 from hashlib import sha1
 import time
@@ -8,6 +10,11 @@ import random
 import string
 import markov
 import os
+from init import Log
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+db = SQLAlchemy(app)
 
 def makeSig(consumer_key, oauth_token, consumer_secret, token_secret, message, timestamp, nonce, URL):
 
@@ -65,9 +72,6 @@ def postToTwitter(chain):
     URL = "https://api.twitter.com/1.1/statuses/update.json"
     
     message = str(chain)
-    """while len(messagestr) > 280:
-        message = markov.Chain()
-        messagestr = str(message)"""
 
     print(message)
 
@@ -83,6 +87,15 @@ def postToTwitter(chain):
     print(r.text)
     print(chain.trace())
 
-if __name__ =="__main__":
+    response = r.json()
+
+    log = Log(nonce, response["created_at"], chain.trace())
+    db.session.add(log)
+    db.session.commit()
+
+def main():
     chain = markov.markov()
     postToTwitter(chain)
+
+if __name__ =="__main__":
+    main()

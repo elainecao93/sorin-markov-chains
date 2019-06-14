@@ -37,14 +37,21 @@ class Chain():
                 break
         return None
     
-    def makeFromLog(self):
+    def makeFromLog(self, log):
         return None #TODO
     
     def makeIntoLog(self):
         return None #TODO
         
     def trace(self):
-        return None #TODO
+        output = ""
+        first = True
+        for elem in self.solution:
+            if not first:
+                output += "\n"
+            first = False
+            output += elem.id + " " + elem.source_id
+        return output
 
 def markov():
     #spits out a chain
