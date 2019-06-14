@@ -78,8 +78,8 @@ class Chain():
             output += (elem.word2, card_source.card, card_source.set)
         return output
 
-def markov():
+def markov(ensure_length = False):
     #spits out a chain
     chain = Chain()
-    chain.make()
+    chain.make(ensure_length)
     return chain
