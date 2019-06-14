@@ -74,8 +74,8 @@ class Chain():
     def fullTrace(self):
         output = []
         for elem in self.solution:
-            card_source = CardSource.query.filter_by(id=elem.source_id)
-            output += (elem.word2, card_source.card, card_source.set)
+            card_source = CardSource.query.filter_by(id=elem.source_id).first()
+            output += (elem.word2, card_source.card, card_source.cardSet)
         return output
 
 def markov(ensure_length = False):
