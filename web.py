@@ -20,8 +20,8 @@ def index():
 
 @app.route("/i/love/bronson")
 def postToTwitter():    
-    post.main()
-    return ""
+    chain = post.postFromWeb()
+    return str(chain)
 
 #TODO refactor post.py into this
 

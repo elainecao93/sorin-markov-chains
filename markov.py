@@ -50,7 +50,7 @@ class Chain():
             if not first:
                 output += "\n"
             first = False
-            output += elem.id + " " + elem.source_id
+            output += str(elem.id) + " " + str(elem.source_id)
         return output
 
 def markov():

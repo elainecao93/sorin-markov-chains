@@ -93,6 +93,11 @@ def postToTwitter(chain):
     db.session.add(log)
     db.session.commit()
 
+def postFromWeb():
+    chain = markov.markov()
+    postToTwitter(chain)
+    return chain
+
 def main():
     chain = markov.markov()
     postToTwitter(chain)
