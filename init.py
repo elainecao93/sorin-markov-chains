@@ -58,19 +58,14 @@ class Link(db.Model):
         return output
 
 def main():
-    """#Testcases
-    db.drop_all()
+
+    """db.drop_all()
     db.session.commit()
     db.create_all()
-    db.session.commit()
-
-    newLink = Link("a", "b", "c", 1)
-    db.session.add(newLink)
     db.session.commit()"""
 
-    #TODO refactor scrape.py and markov.py  into this
-
-    db.drop_all()
+    db.drop(Link)
+    db.drop(CardSource)
     db.session.commit()
     db.create_all()
     db.session.commit()

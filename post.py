@@ -89,7 +89,7 @@ def postToTwitter(chain):
 
     response = r.json()
 
-    log = Log(nonce, response["created_at"], chain.trace())
+    log = Log(nonce, response["created_at"], chain.makeIntoLog())
     db.session.add(log)
     db.session.commit()
 

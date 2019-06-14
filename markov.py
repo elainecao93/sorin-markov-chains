@@ -38,12 +38,14 @@ class Chain():
         return None
     
     def makeFromLog(self, log):
-        return None #TODO
-    
+        self.solution = []
+        log = log.split("\n")
+        for elem in log:
+            link_id = elem.split(" ")[0]
+            link = Link.query.filter_by(id=link_id).first()
+            self.solution.append(link)
+
     def makeIntoLog(self):
-        return None #TODO
-        
-    def trace(self):
         output = ""
         first = True
         for elem in self.solution:
@@ -51,6 +53,13 @@ class Chain():
                 output += "\n"
             first = False
             output += str(elem.id) + " " + str(elem.source_id)
+        return output
+    
+    def fullTrace(self):
+        output = []
+        for elem in self.solution:
+            card_source = CardSource.query.filter_by(id=elem.source_id)
+            output += (elem.word2, card_source.card, card_source.set)
         return output
 
 def markov():
