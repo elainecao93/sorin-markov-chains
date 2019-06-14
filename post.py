@@ -85,7 +85,7 @@ def postToTwitter(chain):
     r = requests.post(url = URL, data = data, headers = headers)
     print(r.request.headers)
     print(r.text)
-    print(chain.trace())
+    print(chain.fullTrace())
 
     response = r.json()
 
