@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 db = SQLAlchemy(app)
 
+MAX_TWEET_LENGTH = 280
+
 class Chain():
 
     def __init__(self):
@@ -23,7 +25,7 @@ class Chain():
             output += " " + self.solution[ind].next_word
         return output
     
-    def make(self):
+    def make(self, ensure_length = False):
         self.solution = []
         possibleFirstElems = Link.query.filter_by(word1="SOL").all()
         firstElem = random.choice(possibleFirstElems)
@@ -35,7 +37,21 @@ class Chain():
             self.solution.append(nextElem)
             if nextElem.next_word == "EOL":
                 break
-        return None
+        
+        if ensure_length:
+            len = 0
+            for elem in self.solution:
+                len += elem.word2 + 1
+            if len > 280:
+                return self.make()
+
+        
+        #check to see that its not just a copy
+        orig_id = self.solution[0].source_id
+        for elem in self.solution:
+            if elem.source_id != orig_id:
+                return None
+        self.make()
     
     def makeFromLog(self, log):
         self.solution = []
