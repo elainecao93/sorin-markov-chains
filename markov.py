@@ -20,9 +20,13 @@ class Chain():
     def __repr__(self):
         if (len(self.solution)) == 0:
             self.make()
-        output = self.solution[0].word2
-        for ind in range(0, len(self.solution)-1):
-            output += " " + self.solution[ind].next_word
+        output = ""
+        first = True
+        for elem in elems:
+            if not first:
+                output += " "
+            first = False
+            output += elem.word2
         return output
     
     def make(self, ensure_length = False):
@@ -44,7 +48,6 @@ class Chain():
                 length += len(elem.word2) + 1
             if length > 280:
                 return self.make()
-
         
         #check to see that its not just a copy
         orig_id = self.solution[0].source_id
