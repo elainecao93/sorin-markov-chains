@@ -22,11 +22,13 @@ class Chain():
             self.make()
         output = ""
         first = True
-        for elem in elems:
+        for elem in self.solution:
             if not first:
                 output += " "
             first = False
             output += elem.word2
+        if output.count("\"")%2==1:
+            output += "\""
         return output
     
     def make(self, ensure_length = False):
