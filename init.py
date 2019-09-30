@@ -59,10 +59,10 @@ class Link(db.Model):
 
 def main():
 
-    """db.drop_all()
+    db.drop_all()
     db.session.commit()
     db.create_all()
-    db.session.commit()"""
+    db.session.commit()
 
     db.drop(Link)
     db.drop(CardSource)
