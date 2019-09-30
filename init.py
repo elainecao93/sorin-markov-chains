@@ -64,11 +64,11 @@ def main():
     db.create_all()
     db.session.commit()
 
-    db.drop(Link)
+    """db.drop(Link)
     db.drop(CardSource)
     db.session.commit()
     db.create_all()
-    db.session.commit()
+    db.session.commit()"""
 
     pageNumber = 1
     while(True):
